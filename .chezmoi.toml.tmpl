@@ -1,11 +1,25 @@
-{{- $codespaces:= env "CODESPACES" | not | not -}}
+{{- /* Checks if running interactively, which is not the case for GitHub Codespaces */ -}}
+
+{{- /* Initializes the name variable with a default value */ -}}
+{{- $name := "Sebastian Pölsterl" -}}
+{{- /* If name was previously set, reuses it */ -}}
+{{- if hasKey . "name" -}}
+{{-   $name = .name -}}
+{{- /* Otherwise, if running interactively, prompts for a name */ -}}
+{{- else if stdinIsATTY -}}
+{{-   $name = promptString "name" $name -}}
+{{- end -}}
+
+{{- /* Does the same for the email */ -}}
+{{- $email := "74460+sebp@users.noreply.github.com" -}}
+{{- if hasKey . "email" -}}
+{{-   $email = .email -}}
+{{- else if stdinIsATTY -}}
+{{-   $email = promptString "email" $email -}}
+{{- end -}}
+
 sourceDir = {{ .chezmoi.sourceDir | quote }}
 
 [data]
-    name = "Sebastian Pölsterl"
-    codespaces = {{ $codespaces }}
-{{- if $codespaces }}{{/* Codespaces dotfiles setup is non-interactive, so set an email address */}}
-    email = "74460+sebp@users.noreply.github.com"
-{{- else }}{{/* Interactive setup, so prompt for an email address */}}
-    email = {{ promptString "email" | quote }}
-{{- end }}
+    name = {{ $name | quote }}
+    email = {{ $email | quote }}

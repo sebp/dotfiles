@@ -6,6 +6,10 @@ set -e
 fish -c 'curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher'
 fish -c 'fisher install IlanCosman/tide@v5'
 
+# Configure tide
+# https://github.com/IlanCosman/tide/issues/304#issuecomment-1372724425
+echo 2 1 2 1 1 1 1 2 1 2 2 1 1 y | fish -c 'tide configure' >/dev/null
+
 {{ else if eq .chezmoi.os "darwin" -}}
 #!/bin/sh
 brew install ripgrep

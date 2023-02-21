@@ -5,3 +5,5 @@ set -g EDITOR /usr/bin/nvim
 
 alias vi nvim
 alias vim nvim
+
+set PATH $HOME/.local/bin $PATH

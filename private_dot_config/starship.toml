@@ -1,0 +1,79 @@
+# A minimal left prompt
+format = """
+╭─$all $fill $cmd_duration$status$jobs$conda
+╰─$character"""
+
+add_newline = false
+
+[line_break]
+disabled = true
+
+[status]
+disabled = false
+
+[cmd_duration]
+style = "bold yellow"
+format = "[$duration]($style) "
+
+[directory]
+style = "bold bg:#00ACD7"
+format = "[ $path]($style)[$read_only]($read_only_style)[ ]($style)[](fg:#00ACD7) "
+truncate_to_repo = false
+fish_style_pwd_dir_length = 1
+
+[fill]
+symbol = " "
+
+# https://raw.githubusercontent.com/fredericrous/dotfiles/main/private_dot_config/starship.toml
+# https://gitlab.com/pinage404/dotfiles/-/blob/ed455db5/dotfiles/config/starship.toml
+[git_branch]
+style = "#4E9A06"
+format = "\b\b[](fg:#00ACD7 bg:$style)[ $symbol$branch](fg:black bg:$style)[](fg:$style) "
+
+[git_commit]
+style = "#4E9A06"
+format = "\b\b[ ](bg:$style)[\\($hash$tag\\)](fg:black bg:$style)[](fg:$style)"
+
+[git_state]
+style = "#4E9A06"
+format = "\b\b[ ](bg:$style)[ \\($state( $progress_current/$progress_total)\\)](fg:black bg:$style)[](fg:$style)"
+
+[git_status]
+style = "#4E9A06"
+format = "(\b\b[ ](bg:$style fg:black)$conflicted$staged$modified$renamed$deleted$untracked$stashed$ahead_behind[](fg:$style))"
+conflicted = "[ ](bold fg:88 bg:#4E9A06)[  ${count} ](fg:black bg:#d8712c)"
+staged = "[$count ](fg:black bg:#4E9A06)"
+modified = "[${count} ](fg:black bg:#4E9A06)"
+renamed = "[${count} ](fg:black bg:#4E9A06)"
+deleted = "[${count} ](fg:black bg:#4E9A06)"
+untracked = "[?${count} ](fg:black bg:#4E9A06)"
+stashed = "[${count} ](fg:black bg:#4E9A06)"
+ahead = "[⇡${count} ](fg:#523333 bg:#4E9A06)"
+behind = "[⇣${count} ](fg:black bg:#4E9A06)"
+diverged = "[ ](fg:88 bg:#4E9A06)[ נּ ](fg:black bg:#4E9A06)[ ${ahead_count} ](fg:black bg:#4E9A06)[ ${behind_count} ](fg:black bg:#4E9A06)"
+
+[python]
+symbol = " "
+style = "fg:black bg:#eb9606"
+format = "[](fg:black bg:#eb9606)[$symbol$pyenv_prefix$version$virtualenv]($style)[](fg:#eb9606)"
+disabled = true
+
+[rlang]
+disabled = true
+
+[conda]
+symbol = " "
+format = '\([$symbol$environment]($style)\)'
+
+[golang]
+disabled = true
+
+[ruby]
+disabled = true
+
+[username]
+disabled = true
+
+[hostname]
+disabled = false
+format = '[$hostname]($style):'

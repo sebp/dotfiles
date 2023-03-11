@@ -10,9 +10,8 @@ fish -c 'fisher install IlanCosman/tide@v5'
 # https://github.com/IlanCosman/tide/issues/304#issuecomment-1372724425
 echo 2 1 2 1 1 1 1 2 1 2 2 1 1 y | fish -c 'tide configure' >/dev/null
 
-# Install Tmux Plugin Manager
-git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm && \
-  ~/.config/tmux/plugins/tpm/bin/install_plugins
+# Install Tmux Plugins
+~/.config/tmux/plugins/tpm/bin/install_plugins
 
 {{ else if eq .chezmoi.os "darwin" -}}
 #!/bin/sh

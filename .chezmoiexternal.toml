@@ -1,4 +1,4 @@
-[".tmux/plugins/tpm"]
+[".config/tmux/plugins/tpm"]
     type = "archive"
     url = "https://github.com/tmux-plugins/tpm/archive/refs/heads/master.zip"
     exact = true

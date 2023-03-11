@@ -1,3 +1,8 @@
+[".dircolors"]
+    type = "file"
+    url = "https://github.com/dracula/dircolors/raw/main/.dircolors"
+    refreshPeriod = "168h"
+
 [".config/tmux/plugins/tpm"]
     type = "archive"
     url = "https://github.com/tmux-plugins/tpm/archive/refs/heads/master.zip"

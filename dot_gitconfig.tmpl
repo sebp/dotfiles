@@ -7,8 +7,10 @@
 	branch = auto
 	ui = true
 [alias]
+	aa = add --all
+	ap = add --patch
 	ci = commit
-	s = status
+	co = checkout
 	rh = reset --hard HEAD
 	st = status
 	uncommit = reset --soft HEAD^
@@ -17,6 +19,8 @@
 	pager = delta
 	autocrlf = false
 	eol = lf
+[rebase]
+	autosquash = true
 [interactive]
 	diffFilter = delta --color-only --features=interactive
 [merge]

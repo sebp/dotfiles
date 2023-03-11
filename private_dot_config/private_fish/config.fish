@@ -6,4 +6,5 @@ set -g EDITOR /usr/bin/nvim
 alias vi nvim
 alias vim nvim
 
+set -x XDG_CONFIG_HOME "$HOME/.config"
 set PATH $HOME/.local/bin $PATH

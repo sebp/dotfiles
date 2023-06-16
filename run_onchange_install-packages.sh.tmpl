@@ -17,7 +17,7 @@ echo 2 1 2 1 1 1 1 2 1 2 2 1 1 y | fish -c 'tide configure' >/dev/null
 
 {{ if eq .chezmoi.os "darwin" -}}
 brew tap homebrew/cask-fonts
-brew install dust fish font-sauce-code-pro-nerd-font git-delta neovim ripgrep
+brew install dust fish font-sauce-code-pro-nerd-font git-delta mambaforge neovim ripgrep
 {{- end }}
 
 {{- end }}

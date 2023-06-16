@@ -1,4 +1,4 @@
-{{- if eq .chezmoi.os "linux" -}}
+{{ if eq .chezmoi.os "linux" -}}
 [".dircolors"]
     type = "file"
     url = "https://github.com/dracula/dircolors/raw/main/.dircolors"
@@ -28,7 +28,7 @@
     [".local/bin/dust".filter]
         command = "tar"
         args = ["--extract", "--file", "/dev/stdin", "--gzip", "--to-stdout", "dust-v0.8.4-x86_64-unknown-linux-musl/dust"]
-{{- end -}}
+{{- end }}
 
 [".local/share/nvim/site/autoload/plug.vim"]
     type = "file"

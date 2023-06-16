@@ -1,4 +1,4 @@
-{{ if eq .chezmoi.os "linux" -}}
+{{ if or (eq .chezmoi.os "linux") (eq .chezmoi.os "darwin") -}}
 #!/bin/sh
 
 set -e
@@ -10,10 +10,13 @@ fish -c 'fisher install IlanCosman/tide@v5'
 # https://github.com/IlanCosman/tide/issues/304#issuecomment-1372724425
 echo 2 1 2 1 1 1 1 2 1 2 2 1 1 y | fish -c 'tide configure' >/dev/null
 
+{{- if eq .chezmoi.os "linux" -}}
 # Install Tmux Plugins
 ~/.config/tmux/plugins/tpm/bin/install_plugins
+{{- end -}}
 
-{{ else if eq .chezmoi.os "darwin" -}}
-#!/bin/sh
-brew install ripgrep
+{{- if eq .chezmoi.os "darwin" -}}
+brew install dust font-sauce-code-pro-nerd-font git-delta neovim ripgrep
+{{- end -}}
+
 {{ end -}}

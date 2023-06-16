@@ -1,3 +1,4 @@
+{{- if eq .chezmoi.os "linux" -}}
 [".dircolors"]
     type = "file"
     url = "https://github.com/dracula/dircolors/raw/main/.dircolors"
@@ -8,11 +9,6 @@
     url = "https://github.com/tmux-plugins/tpm/archive/refs/heads/master.zip"
     exact = true
     stripComponents = 1
-    refreshPeriod = "168h"
-
-[".local/share/nvim/site/autoload/plug.vim"]
-    type = "file"
-    url = "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
     refreshPeriod = "168h"
 
 [".local/bin/delta"]
@@ -32,3 +28,9 @@
     [".local/bin/dust".filter]
         command = "tar"
         args = ["--extract", "--file", "/dev/stdin", "--gzip", "--to-stdout", "dust-v0.8.4-x86_64-unknown-linux-musl/dust"]
+{{- end -}}
+
+[".local/share/nvim/site/autoload/plug.vim"]
+    type = "file"
+    url = "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
+    refreshPeriod = "168h"

@@ -1,11 +1,6 @@
 [user]
 	name = {{ .name | quote }}
 	email = {{ .email | quote }}
-[color]
-	diff = auto
-	status = auto
-	branch = auto
-	ui = true
 [alias]
 	aa = add --all
 	ap = add --patch
@@ -15,18 +10,28 @@
 	st = status
 	uncommit = reset --soft HEAD^
         oglog = log --graph --oneline --decorate --all
+[branch]
+	sort = -committerdate
+[color]
+	diff = auto
+	status = auto
+	branch = auto
+	ui = true
 [core]
 	pager = delta
 	autocrlf = false
 	eol = lf
-[rebase]
-	autosquash = true
+[diff]
+	colorMoved = default
+	algorithm = histogram
+[init]
+	defaultBranch = main
 [interactive]
 	diffFilter = delta --color-only --features=interactive
 [merge]
 	conflictstyle = diff3
-[diff]
-	colorMoved = default
+[rebase]
+	autosquash = true
 [delta]
 	features = decorations calochortus-lyallii
 	navigate = true  # use n and N to move between diff sections

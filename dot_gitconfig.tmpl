@@ -68,3 +68,10 @@
     #syntax-theme = Nord
     #syntax-theme = Vibrant Sunburst
     syntax-theme = Dracula
+{{ if (eq .chezmoi.os "darwin") -}}
+[credential]
+	helper = 
+	helper = /usr/local/bin/git-credential-manager
+[credential "https://dev.azure.com"]
+	useHttpPath = true
+{{- end }}

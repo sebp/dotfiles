@@ -7,7 +7,6 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'airblade/vim-gitgutter'
 Plug 'scrooloose/nerdcommenter'
-Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
 
 " Initialize plugin system
 call plug#end()

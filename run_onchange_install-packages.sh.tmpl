@@ -3,6 +3,23 @@
 
 set -e
 
+{{ if eq .chezmoi.os "darwin" -}}
+brew install \
+  dust \
+  fish \
+  git-delta \
+  neovim \
+  ripgrep
+brew install --cask \
+  git-credential-manager \
+  font-hasklig \
+  font-hasklug-nerd-font \
+  font-latin-modern-math \
+  font-sauce-code-pro-nerd-font \
+  font-stix-two-math \
+  mambaforge
+{{- end }}
+
 fish -c 'curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher'
 fish -c 'fisher install IlanCosman/tide@v5'
 
@@ -14,11 +31,4 @@ echo 2 1 2 1 1 1 1 2 1 2 2 1 1 y | fish -c 'tide configure' >/dev/null
 # Install Tmux Plugins
 ~/.config/tmux/plugins/tpm/bin/install_plugins
 {{- end }}
-
-{{ if eq .chezmoi.os "darwin" -}}
-brew tap homebrew/cask-fonts
-brew install dust fish font-hasklig font-hasklug-nerd-font font-sauce-code-pro-nerd-font git-delta mambaforge neovim ripgrep
-brew install --cask git-credential-manager
-{{- end }}
-
 {{- end }}

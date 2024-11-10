@@ -3,6 +3,9 @@
 
 set -e
 
+curl -LsSf https://astral.sh/uv/install.sh | sh
+~/.local/bin/uv fish > completions/uv.fish
+
 {{ if eq .chezmoi.os "darwin" -}}
 brew install \
   dust \

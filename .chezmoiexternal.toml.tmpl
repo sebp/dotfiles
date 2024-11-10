@@ -27,12 +27,12 @@
 
 [".local/bin/dust"]
     type = "file"
-    url = "https://github.com/bootandy/dust/releases/download/v0.8.4/dust-v0.8.4-x86_64-unknown-linux-musl.tar.gz"
+    url = "https://github.com/bootandy/dust/releases/download/v1.1.1/dust-v1.1.1-x86_64-unknown-linux-musl.tar.gz"
     executable = true
     refreshPeriod = "168h"
     [".local/bin/dust".filter]
         command = "tar"
-        args = ["--extract", "--file", "/dev/stdin", "--gzip", "--to-stdout", "dust-v0.8.4-x86_64-unknown-linux-musl/dust"]
+        args = ["--extract", "--file", "/dev/stdin", "--gzip", "--to-stdout", "dust-v1.1.1-x86_64-unknown-linux-musl/dust"]
 {{- end }}
 
 [".local/share/nvim/site/autoload/plug.vim"]

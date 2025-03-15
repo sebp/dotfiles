@@ -17,6 +17,8 @@
 	status = auto
 	branch = auto
 	ui = true
+[column]
+	ui = auto
 [core]
 	pager = delta
 	autocrlf = false
@@ -24,18 +26,27 @@
 [diff]
 	colorMoved = default
 	algorithm = histogram
+	mnemonicPrefix = true
+	renames = true
+[fetch]
+	prune = true
+	pruneTags = true
 [init]
 	defaultBranch = main
 [interactive]
-	diffFilter = delta --color-only --features=interactive
+	diffFilter = delta --color-only
 [merge]
-	conflictstyle = diff3
+	conflictStyle = zdiff3
 [rebase]
-	autosquash = true
+	autoSquash = true
+	autoStash = true
+	updateRefs = true
+[tag]
+	sort = version:refname
 [delta]
-	features = decorations calochortus-lyallii
+	features = calochortus-lyallii
 	navigate = true  # use n and N to move between diff sections
-	light = false
+	dark = true
 # https://github.com/dandavison/delta/blob/master/themes.gitconfig
 [delta "calochortus-lyallii"]
     # author: https://github.com/manojkarthick
@@ -65,8 +76,6 @@
     plus-style = syntax "#004000"
     whitespace-error-style = "#280050" reverse
     zero-style = syntax
-    #syntax-theme = Nord
-    #syntax-theme = Vibrant Sunburst
     syntax-theme = Dracula
 {{ if (eq .chezmoi.os "darwin") -}}
 [credential]

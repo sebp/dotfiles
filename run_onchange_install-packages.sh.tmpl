@@ -34,5 +34,5 @@ echo 2 1 2 1 1 1 1 2 1 2 2 1 1 y | fish -c 'tide configure' >/dev/null
 
 # Install uv
 curl -LsSf https://astral.sh/uv/install.sh | env INSTALLER_NO_MODIFY_PATH=1 sh
-~/.local/bin/uv fish > ~/.config/fish/completions/uv.fish
+~/.local/bin/uv generate-shell-completion fish > ~/.config/fish/completions/uv.fish
 {{- end }}

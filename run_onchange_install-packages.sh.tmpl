@@ -41,12 +41,18 @@ fish -c 'tide configure --auto \
     --icons="Few icons" \
     --transient=No'
 
+# Install uv
+curl -LsSf https://astral.sh/uv/install.sh | env INSTALLER_NO_MODIFY_PATH=1 sh
+~/.local/bin/uv generate-shell-completion fish > ~/.config/fish/completions/uv.fish
+
+# Install pixi completions
+if [ -x "$(command -v pixi)" ]; then
+    pixi completion --shell fish > ~/.config/fish/completions/pixi.fish
+fi
+
 {{ if eq .chezmoi.os "linux" -}}
 # Install Tmux Plugins
 ~/.config/tmux/plugins/tpm/bin/install_plugins
 {{- end }}
 
-# Install uv
-curl -LsSf https://astral.sh/uv/install.sh | env INSTALLER_NO_MODIFY_PATH=1 sh
-~/.local/bin/uv generate-shell-completion fish > ~/.config/fish/completions/uv.fish
 {{- end }}

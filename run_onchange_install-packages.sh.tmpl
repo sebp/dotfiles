@@ -52,7 +52,9 @@ fi
 
 {{ if eq .chezmoi.os "linux" -}}
 # Install Tmux Plugins
-~/.config/tmux/plugins/tpm/bin/install_plugins
+if [ -x "$(command -v tmux)" ]; then
+    ~/.config/tmux/plugins/tpm/bin/install_plugins
+fi
 {{- end }}
 
 {{- end }}

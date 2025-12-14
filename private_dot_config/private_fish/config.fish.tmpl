@@ -9,12 +9,12 @@ alias vim nvim
 set -x XDG_CONFIG_HOME "$HOME/.config"
 set PATH $HOME/.local/bin {{- if eq .chezmoi.os "darwin" }} /opt/homebrew/bin /opt/homebrew/sbin {{- end }} $PATH
 
+{{- if eq .chezmoi.os "darwin" }}
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-{{- if eq .chezmoi.os "darwin" }}
 if test -f /opt/homebrew/Caskroom/miniforge/base/bin/conda
     eval /opt/homebrew/Caskroom/miniforge/base/bin/conda "shell.fish" "hook" $argv | source
-{{- end }}
 end
 # <<< conda initialize <<<
+{{- end }}
 

@@ -23,12 +23,11 @@ Before committing, always check the current branch:
 git branch --show-current
 ```
 
-**If you're on `main` or `master`, you MUST create a feature branch first** — unless the user explicitly asked to commit to main. Do not ask the user whether to create a branch; just proceed with branch creation, then re-check the current branch before committing. If still on `main` or `master`, stop — do not commit.
+**If you're on `main` or `master`, you MUST create a feature branch first** — unless the user explicitly asked to commit to main.
 
-## Questions to ask to the user (if information is missing)
-
-- Single commit or multiple commits? (If unsure: default to multiple small commits when there are unrelated changes.)
-- Required scopes.
+- Derive a branch name from the staged/unstaged changes (e.g. `feat/add-login`, `fix/null-check`). Tell the user: "You're on `main` — creating branch `<name>` before committing." Then run `git checkout -b <name>`.
+- After checkout, verify success with `git branch --show-current`. If the output is still `main` or `master`, stop and tell the user: "Branch creation failed — please create a branch manually and re-run."
+- Do not proceed to staging or committing until you have confirmed you are on a non-protected branch.
 
 ## Principles
 
@@ -38,19 +37,16 @@ git branch --show-current
 
 ## Git Commit Workflow
 
-Copy this checklist and check off items as you complete them:
+Work through each step below in order. Do not skip ahead — each step is a gate: if it reveals a problem, resolve it before continuing.
 
-```
-Task Progress:
-- [ ] Step 1: Inspect the working tree
-- [ ] Step 2: Decide commit boundaries
-- [ ] Step 3: Stage only what belongs in the next commit
-- [ ] Step 4: Review what will actually be committed
-- [ ] Step 5: Describe the staged change in 1-2 sentences (before writing the message)
-- [ ] Step 6: Write the commit message
-- [ ] Step 7: Verify the repository is in a working state
-- [ ] Step 8: Confirm the working tree is clean, or continue with next commit
-```
+1. Inspect the working tree
+2. Decide commit boundaries
+3. Stage only what belongs in the next commit
+4. Review what will actually be committed
+5. Describe the staged change in 1-2 sentences (before writing the message)
+6. Write the commit message
+7. Verify the repository is in a working state
+8. Confirm the working tree is clean, or continue with next commit
 
 **Step 1: Inspect the working tree before staging**
 - `git status --long --no-column`
@@ -60,6 +56,7 @@ Task Progress:
 **Step 2: Decide commit boundaries (split if needed)**
 - Split by: feature vs refactor, backend vs frontend, formatting vs logic, tests vs prod code, dependency bumps vs behavior changes.
 - If changes are mixed in one file, plan to use patch staging.
+- If the right split is still unclear after reviewing the diff, ask the user: "Would you like one commit or several? Is there a scope I should use?"
 
 **Step 3: Stage only what belongs in the next commit**
 - Prefer patch staging for mixed changes: `git add -p`
@@ -71,6 +68,7 @@ Task Progress:
   - no secrets or tokens
   - no accidental debug logging or core dump
   - no unrelated formatting churn
+  - no files that belong in `.gitignore` (e.g. `.env`, build artifacts, IDE config)
 
 **Step 5: Describe the staged change in 1-2 sentences (before writing the message)**
 - "What changed?" + "Why?"
@@ -80,11 +78,20 @@ Task Progress:
 - You MUST use the structure in [commit-message-template.md](references/commit-message-template.md).
 
 **Step 7: Verify the repository is in a working state**
-- Run the repo's fastest meaningful check (pre-commit hooks, unit tests, lint, or build) before moving on.
+- Identify the fastest available check using this priority order:
+  1. Pre-commit hooks (already ran if a hook framework is configured — confirm with `git log --oneline -1`)
+  2. A `lint` or `typecheck` script in `pyproject.toml`, `tox.ini` or `Makefile`
+  3. A focused unit test command scoped to the changed files (e.g. `pytest path/to/changed/`, `go test ./...`)
+  4. A top-level `make check`, `make test`, or `npm test` — only if it runs in under ~30 seconds
+- If no fast check exists or runtime is unclear, skip and note it explicitly in the deliverable: "No fast check identified — skipped Step 7."
+- **If the check fails:** do not move on. Either:
+  - Fix the issue and `git commit --amend` (if the fix belongs with this commit), or
+  - Create a follow-up fix commit before continuing to the next change.
+  Never leave the repo in a broken state between commits.
 
 **Step 8: Confirm the working tree is clean, or continue with next commit**
 - Inspect the working tree for uncommited changes
-- If the working tree is _not_ clean, continue with the next commit starting at Step 1 and a new checklist.
+- If the working tree is _not_ clean, continue with the next commit starting at Step 1.
 
 ## Deliverable
 
